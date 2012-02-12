@@ -1,11 +1,11 @@
 def tiger_room()
   puts "here be tigers. What do you do? (Stay/Run)"
   what = gets.chomp 
-  if what.lower == "stay"
+  if what.downcase == "stay"
     puts "You get eaten"
     die("Eaten")
   elsif
-    what.lower == "run"
+    what.downcase == "run"
     puts "You are alive"
   end
 end
