@@ -41,6 +41,8 @@ end
 
 
 
+
+
 class TestNumSubs < Test::Unit::TestCase
   def test_num_sub_single()    
     assert_equal("1", encode_num_subs("a"))
