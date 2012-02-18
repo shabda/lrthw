@@ -32,6 +32,15 @@ def playfair_keystream(key)
   
 end
 
+def as_pairs(plaintext)
+  plaintext.gsub!(" ", "")
+  out = []
+  (plaintext.length/2).times do |i|
+    out << plaintext[i*2...(i+1)*2]
+  end
+  out
+end
+
 
 
 
@@ -72,4 +81,12 @@ class TestPlayFair < Test::Unit::TestCase
             ]
     assert_equal(out_stream, playfair_keystream(key))
   end
+  
+  def test_pairs
+    input = "HELLO WORLD"
+    output = %w(HE LL OW OR LD)
+    assert_equal(output, as_pairs(input))
+  end
+  
+  
 end
