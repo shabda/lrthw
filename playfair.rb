@@ -36,6 +36,15 @@ def as_pairs(plaintext)
   if not plaintext.length % 2 ==0
     plaintext << "x"
   end
+  dups_at = []
+  plaintext.length.times do |i|
+    if not i == 0 and plaintext[i] == plaintext[i-1]
+      dups_at << i
+    end
+  end
+  dups_at.each do |el|
+    puts "XXXX", el, plaintext[el]
+  end
   plaintext.upcase!
   plaintext.gsub!(" ", "")
   out = []
@@ -96,7 +105,12 @@ class TestPlayFair < Test::Unit::TestCase
     input = "Hide the gold in the tree stump"
     output = %w(HI DE TH EG OL DI NT HE TR EX ES TU MP)
     assert_equal(output, as_pairs(input))
+    input = "Thee issa"
+    output = %w(THE EX IS SX AX)
+    assert_equal(output, as_pairs(input))
+    
   end
+  
   
   
 end
