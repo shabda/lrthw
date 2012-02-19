@@ -9,7 +9,7 @@ def get_xor_key(key)
 end
 
 def get_xor_cipher(plain, key)
-  plain.upcase!
+  plain.upcase
   plain_stream = plain.split("")
   out = []
   key = get_xor_key(key)
@@ -19,7 +19,6 @@ def get_xor_cipher(plain, key)
   out.map! {|el| el.chr}
   out.join ""
 end
-
 
 
 class TestXor < Test::Unit::TestCase
@@ -32,12 +31,23 @@ class TestXor < Test::Unit::TestCase
   def test_cipher_change
     input ="Hello"
     key = "say friend"
+    
     assert_not_equal(input, get_xor_cipher(input, key))
   end
   
   def test_cipher
     input ="Hello"
-    key = "say friend"
-    assert_equal(input, get_xor_cipher(get_xor_cipher(input, key), key))
+    key = "Pedo mellon a minno"
+    get_xor_cipher(input, key)
+    output = get_xor_cipher(get_xor_cipher(input, key), key)
+    assert_equal(input, output)
   end
+  
+  def test_cipher_with_spaces
+    input ="Hello World"
+    key = "Pedo mellon a minno"
+    output = get_xor_cipher(get_xor_cipher(input, key), key)
+    assert_equal(input, output)
+  end
+    
 end
