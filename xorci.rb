@@ -9,7 +9,6 @@ def get_xor_key(key)
 end
 
 def get_xor_cipher(plain, key)
-  plain.upcase
   plain_stream = plain.split("")
   out = []
   key = get_xor_key(key)
